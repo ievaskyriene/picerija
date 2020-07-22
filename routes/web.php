@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'products'], function(){
+Route::group(['prefix' => 'admin/products'], function(){
     Route::get('', 'ProductController@index')->name('product.index');
     Route::get('create', 'ProductController@create')->name('product.create');
     Route::post('store', 'ProductController@store')->name('product.store');

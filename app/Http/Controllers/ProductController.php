@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Image;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('admin.product.index', ['products' => $products]);
     }
 
     /**
@@ -24,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        return view('admin.product.create');
     }
 
     /**
@@ -35,7 +37,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product;
+        $product->title = $request->product_title;
+        $product->price = $request->product_price;
+        $product->sale = $request->product_sale;
+        $product->descrip = $request->product_description;
+        $product->save();
+
+        foreach ($request->file('photo') as $key => $image) {
+            $name = $image->getClientOriginalName();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $photo = new Image;
+            $photo->image_name = $name;
+            $photo->nr = $key;
+            $photo->alt = $request->alt;
+            $photo->product_id = $product->id;
+            $photo->save();
+        }
+       
+        return redirect()->route('product.index');
     }
 
     /**
