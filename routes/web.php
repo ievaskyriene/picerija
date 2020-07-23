@@ -12,9 +12,9 @@
 */
 Route::get('create/database', 'DataBaseController@create');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -29,4 +29,6 @@ Route::group(['prefix' => 'admin/products'], function(){
     Route::post('delete/{product}', 'ProductController@destroy')->name('product.destroy');
     Route::get('show/{product}', 'ProductController@show')->name('product.show');
  });
+
+ Route::get('/', 'FrontController@home')->name('home');
  
