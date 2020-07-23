@@ -90,25 +90,25 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product->title = $request->product_title;
-        $product->price = $request->product_price;
-        $product->sale = $request->product_sale;
-        $product->descrip = $request->product_description;
-        $product->save();
+        // $product->title = $request->product_title;
+        // $product->price = $request->product_price;
+        // $product->sale = $request->product_sale;
+        // $product->descrip = $request->product_description;
+        // $product->save();
 
-        // foreach ($request->file('photo') as $key => $image) {
-        //     $name = $image->getClientOriginalName();
-        //     $destinationPath = public_path('/images');
-        //     $image->move($destinationPath, $name);
-        //     $photo = new Image;
-        //     $photo->image_name = $name;
-        //     $photo->nr = $key;
-        //     $photo->alt = $request->alt;
-        //     $photo->product_id = $product->id;
-        //     $photo->save();
-        // }
+        // // foreach ($request->file('photo') as $key => $image) {
+        // //     $name = $image->getClientOriginalName();
+        // //     $destinationPath = public_path('/images');
+        // //     $image->move($destinationPath, $name);
+        // //     $photo = new Image;
+        // //     $photo->image_name = $name;
+        // //     $photo->nr = $key;
+        // //     $photo->alt = $request->alt;
+        // //     $photo->product_id = $product->id;
+        // //     $photo->save();
+        // // }
        
-        return redirect()->route('product.index');
+        // return redirect()->route('product.index');
     }
 
     /**

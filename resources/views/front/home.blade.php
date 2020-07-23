@@ -1,33 +1,33 @@
-{{-- @extends('front.app') --}}
+
+@extends('front.app')
 
 @section('content')
 
 <div class="container">
-   <div class="row justify-content-center">
+    @foreach ($products as $product)
+    <div class="row justify-content-center">
        <div class="col-md-8">
            <div class="card">
-               <div class="card-header">PAVADINIMAS</div>
+               <div class="card-header">{{$product->title}} </div>
+               <div class="card-header">{{$product->price}} </div>
+               <div class="card-header">{{$product->descrip}} </div>
                <div class="card-body">
-                <div class="form-group">
-                    <label>Pavadinimas</label>
-                    {{-- <input type="text" class="form-control"> --}}
-                    {{-- <small class="form-text text-muted">Kažkoks parašymas.</small> --}}
-                  </div>
-                    @foreach ($products as $product)
-                    <a href="{{route('product.edit',[$product])}}">{{$product->title}} {{$product->price}}{{$product->sale}}{{$product->descrip}}</a>
-                        <form method="POST" action="{{route('product.destroy', [$product])}}">
-                        @csrf
-                        <button type="submit">DELETE</button>
-                        </form>
-                     
-                        @foreach ($product->getImages as $photo)
-                        <img class = 'productImg' src="{{asset('images/'.$photo->image_name)}}" style="width: 250px; height: auto;">
-                        @endforeach
-                    @endforeach
-                </div>
+        
+                @foreach ($product->getImages as $photo)
+                <img class = 'productImg' src="{{asset('images/'.$photo->image_name)}}" style="width: 250px; height: auto;">
+               
+                @endforeach
+                <form method="POST" action="{{route('front.add')}}" class="add-form">
+                    <input type = "hidden" name = "product_id" value = "{{$product->id}}"><br><br>
+                    
+                    <input type = 'text' name="count" value='0'>
+                    <button type="submit">Add to cart</button>
+                    @csrf
+                </form>
             </div>
         </div>
     </div>
+    @endforeach 
   
 </div>
 

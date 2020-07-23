@@ -30,5 +30,8 @@ Route::group(['prefix' => 'admin/products'], function(){
     Route::get('show/{product}', 'ProductController@show')->name('product.show');
  });
 
- Route::get('/', 'FrontController@home')->name('home');
+ Route::get('/', 'FrontController@home')->name('front.home');
+ Route::post('add', 'FrontController@add')->name('front.add');
+Route::post('remove', 'FrontController@remove')->name('front.remove');
+
  
