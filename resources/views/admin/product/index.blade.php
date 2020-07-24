@@ -6,16 +6,19 @@
    <div class="row justify-content-center">
        <div class="col-md-8">
            <div class="card">
-               <div class="card-header">PAVADINIMAS</div>
+               <div class="card-header">Produkto koregavimas</div>
                <div class="card-body">
                 <div class="form-group">
-                    <label>Pavadinimas</label>
                     {{-- <input type="text" class="form-control"> --}}
                     {{-- <small class="form-text text-muted">Kažkoks parašymas.</small> --}}
                   </div>
                     @foreach ($products as $product)
-                    <a href="{{route('product.edit',[$product])}}">{{$product->title}} {{$product->price}}{{$product->sale}}{{$product->descrip}}</a>
-                        <form method="POST" action="{{route('product.destroy', [$product])}}">
+                    <a href="{{route('product.edit',[$product])}}">{{$product->title}}</a><br>
+                    <a href="{{route('product.edit',[$product])}}">{{$product->price}}</a><br>
+                    <a href="{{route('product.edit',[$product])}}">{{$product->sale}}</a><br>
+                    <a href="{{route('product.edit',[$product])}}">{{$product->descrip}}</a><br>
+                        
+                    <form method="POST" action="{{route('product.destroy', [$product])}}">
                         @csrf
                         <button type="submit">DELETE</button>
                         </form>

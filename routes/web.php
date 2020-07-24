@@ -34,4 +34,10 @@ Route::group(['prefix' => 'admin/products'], function(){
  Route::post('add', 'FrontController@add')->name('front.add');
 Route::post('remove', 'FrontController@remove')->name('front.remove');
 
+Route::resource('category', 'CategoryController');
+
  
+Route::group(['prefix' => 'categories'], function(){
+    Route::get('', 'CategoryController@index')->name('category.index');
+    Route::get('create', 'CategoryController@create')->name('category.create');
+ });

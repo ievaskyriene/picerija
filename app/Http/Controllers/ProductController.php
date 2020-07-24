@@ -49,13 +49,19 @@ class ProductController extends Controller
             $destinationPath = public_path('/images');
             $image->move($destinationPath, $name);
             $photo = new Image;
+         
             $photo->image_name = $name;
+           
             $photo->nr = $key;
-            $photo->alt = $request->alt;
+           
+            // $photo->alt = $request->alt;
+           
             $photo->product_id = $product->id;
+            
             $photo->save();
+           
         }
-       
+       print_r($product);
         return redirect()->route('product.index');
     }
 

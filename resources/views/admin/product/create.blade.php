@@ -5,17 +5,18 @@
    <div class="row justify-content-center">
        <div class="col-md-8">
            <div class="card">
-               <div class="card-header">PAVADINIMAS</div>
+               <div class="card-header">Naujo produko sukūrimas</div>
                 <div class="card-body">
                     <form method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
-                        <label>Title:</label>
                         Pavadinimas: <input type="text" name="product_title"><hr><br>
                         Kaina: <input type="number" name="product_price"><hr><br>
                         Kaina su nuolaida: <input type="number" name="product_sale"><hr><br>
                         Aprasymas: <input type="text" name="product_description"><hr><br>
+
+                        Produkto kategorija: <input type="text" name="product_description"><hr><br>
                         <div id="product-photo-inputs-area">
                         <input type="file" name="photo[]" id="">
-                        Alt photo name<input type="text" name="alt[]" id="">
+                        {{-- Alt photo name<input type="text" name="alt[]" id=""> --}}
                         </div>
                         @csrf
                         <button id="add-product-photo" type="button" class="btn btn-secondary">add photo</button>

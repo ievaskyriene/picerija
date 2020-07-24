@@ -1,5 +1,6 @@
 const productPhotoInput =
-    '<hr><br><input type="file" name="photo[]"></input> <br> Alt photo name<input type="text" name="alt[]" id=""></input>';
+    '<hr><br><input type="file" name="photo[]"></input> <br> ';
+// Alt photo name<input type="text" name="alt[]" id=""></input>
 const addPhotoButton = document.querySelector("#add-product-photo");
 
 console.log(addPhotoButton);
