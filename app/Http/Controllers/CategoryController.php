@@ -18,7 +18,7 @@ class CategoryController extends Controller
         // $categories = Category::with('children')->whereNull('parent_id')->get();
         $categories = Category::all();
         
-        return view('categories.index', ['categories'  => $categories]);
+        return view('category.index', ['categories'  => $categories]);
         // ->with([
         //   'categories'  => $categories
         // ]);
@@ -77,7 +77,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category.edit', ['category' => $category]);
     }
 
     /**

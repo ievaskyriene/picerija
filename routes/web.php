@@ -40,4 +40,8 @@ Route::resource('category', 'CategoryController');
 Route::group(['prefix' => 'categories'], function(){
     Route::get('', 'CategoryController@index')->name('category.index');
     Route::get('create', 'CategoryController@create')->name('category.create');
+    // Route::post('store', 'CategoryController@store')->name('category.store');
+    Route::get('edit/{category}', 'CategoryController@edit')->name('category.edit');
+    Route::get('update/{category}', 'CategoryController@update')->name('category.update');
+    Route::get('delete/{category}', 'CategoryController@destroy')->name('category.destroy');
  });
