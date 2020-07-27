@@ -38,7 +38,7 @@ class TagController extends Controller
     {
         $tag = new Tag;
         $tag->title = $request->tag_title;
-        $tag->title = $request->tag_action;
+        $tag->action = $request->tag_action;
         $tag->save();
         return redirect()->route('tag.index');
     }
@@ -75,7 +75,7 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         $tag->title = $request->tag_title;
-        $tag->title = $request->tag_action;
+        $tag->action = $request->tag_action;
         $tag->save();
         return redirect()->route('tag.index');
     }

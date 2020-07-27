@@ -167,8 +167,8 @@ echo $sql . '<br>' . $e->getMessage();
 
     try {
         // sql to create table
-        $sql = "CREATE TABLE IF NOT EXISTS productTags (
-        -- id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        $sql = "CREATE TABLE IF NOT EXISTS product_tags (
+        id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         product_id INT(11) UNSIGNED,
         tag_id INT(11) UNSIGNED,
         created_at TIMESTAMP,

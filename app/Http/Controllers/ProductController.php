@@ -6,6 +6,8 @@ use App\Product;
 use App\Image;
 use App\Category;
 use App\ProductCategory;
+use App\Tag;
+use App\ProductTag;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -30,8 +32,9 @@ class ProductController extends Controller
 
     {
         $categories = Category::all();
+        $tags = Tag::all();
         // $productCategories = ProductCategory::all();
-        return view('admin.product.create')->withCategories($categories);
+        return view('admin.product.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -57,9 +60,7 @@ class ProductController extends Controller
             $photo = new Image;
             $photo->image_name = $name;
             $photo->nr = $key;
-           
             // $photo->alt = $request->alt;
-           
             $photo->product_id = $product->id;
             $photo->save();
            
@@ -67,14 +68,24 @@ class ProductController extends Controller
         
         $categories = Category::where('id', $request->parent_id)->get();
         foreach ($categories as $category){
-        $productCategory = new ProductCategory;
-        $productCategory->product_id = $product->id;
-        $productCategory->category_id = $category->id;
-        $productCategory->save();
+            $productCategory = new ProductCategory;
+            $productCategory->product_id = $product->id;
+            $productCategory->category_id = $category->id;
+            $productCategory->save();
+        }
+
+        // $tag = Tag::where('id', $id)->first();
+        $tags = Tag::all();
+      
+        foreach ($tags as $tag){
+            $productTag = new ProductTag;
+            $productTag->product_id = $product->id;
+            $productTag->tag_id = $tag->id;
+            $productTag->save();
         }
 
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->withTags($tags);
     }
 
     /**
@@ -147,6 +158,11 @@ class ProductController extends Controller
         foreach ($product->getCategory as $productCat)
         {
             $productCat->delete();
+        }
+
+        foreach ($product->getTag as $productTag)
+        {
+            $productTag->delete();
         }
 
 

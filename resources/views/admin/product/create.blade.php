@@ -22,6 +22,16 @@
                               @endforeach
                             </select>
                           </div>
+
+                          <div class="form-group">
+                            <select class="form-control" name="tag">
+                              <option value="">Select tag</option>
+                              <option value="0">Nera</option>
+                              @foreach ($tags as $tag)
+                                <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+                              @endforeach
+                            </select>
+                          </div>
                         
                         <div id="product-photo-inputs-area">
                         <input type="file" name="photo[]" id="">
