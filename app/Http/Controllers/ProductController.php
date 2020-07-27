@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Image;
+use App\Category;
+use App\ProductCategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -25,8 +27,11 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+
     {
-        return view('admin.product.create');
+        $categories = Category::all();
+        // $productCategories = ProductCategory::all();
+        return view('admin.product.create')->withCategories($categories);
     }
 
     /**
@@ -42,6 +47,7 @@ class ProductController extends Controller
         $product->price = $request->product_price;
         $product->sale = $request->product_sale;
         $product->descrip = $request->product_description;
+        
         $product->save();
 
         foreach ($request->file('photo') as $key => $image) {
@@ -49,19 +55,25 @@ class ProductController extends Controller
             $destinationPath = public_path('/images');
             $image->move($destinationPath, $name);
             $photo = new Image;
-         
             $photo->image_name = $name;
-           
             $photo->nr = $key;
            
             // $photo->alt = $request->alt;
            
             $photo->product_id = $product->id;
-            
             $photo->save();
            
         }
-       print_r($product);
+        
+        $categories = Category::where('id', $request->parent_id)->get();
+        foreach ($categories as $category){
+        $productCategory = new ProductCategory;
+        $productCategory->product_id = $product->id;
+        $productCategory->category_id = $category->id;
+        $productCategory->save();
+        }
+
+
         return redirect()->route('product.index');
     }
 
@@ -125,7 +137,23 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+   
+
+        foreach ($product->getImages as $photo)
+            {
+            $photo->delete();
+            }
+
+        foreach ($product->getCategory as $productCat)
+        {
+            $productCat->delete();
+        }
+
+
+
         $product->delete();
+       
+      
         return redirect()->route('product.index');
     }
 }

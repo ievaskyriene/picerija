@@ -149,7 +149,7 @@ echo $sql . '<br>' . $e->getMessage();
     try {
         // sql to create table
         $sql = "CREATE TABLE IF NOT EXISTS images (
-        -- id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         alt TEXT,
         nr INT(11),
         product_id INT(11) UNSIGNED,
@@ -185,8 +185,8 @@ echo $sql . '<br>' . $e->getMessage();
 
     try {
         // sql to create table
-        $sql = "CREATE TABLE IF NOT EXISTS productCategories (
-        -- id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        $sql = "CREATE TABLE IF NOT EXISTS product_categories (
+        id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         product_id INT(11) UNSIGNED,
         category_id INT(11) UNSIGNED,
         created_at TIMESTAMP,

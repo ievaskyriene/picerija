@@ -76,7 +76,9 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Category $category)
+
     {
+        // $categories = Category::all();
         return view('category.edit', ['category' => $category]);
     }
 
@@ -89,7 +91,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->title = $request->name;
+        // $category->parent_id = $request->parent_id;
+        $category->save();
+
+
+      return redirect()->route('category.index');
     }
 
     /**
@@ -100,6 +107,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('category.index');
     }
 }

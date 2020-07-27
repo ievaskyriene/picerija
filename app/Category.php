@@ -10,6 +10,16 @@ class Category extends Model
 
     public function children()
     {
-        return $this->hasMany('App\Category', 'parent_id');
+        return $this->hasMany('App\Category', 'parent_id','id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
+
+    public function getScoutKey()
+    {
+        return $this->id;
     }
 }

@@ -10928,6 +10928,10 @@ a.text-dark:focus {
   }
 }
 
+label {
+  width: 150px;
+}
+
 #cart-count {
   position: relative;
 }

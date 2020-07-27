@@ -14,7 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customer = Customer::all();
+        return view('customer.index', ['customers' => $customers]);
     }
 
     /**
@@ -24,7 +25,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customer.create');
     }
 
     /**
@@ -35,7 +36,15 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = new Customer;
+        $customer->name = $request->customer_name;
+        $customer->surname = $request->customer_surname;
+        $customer->email = $request->customer_email;
+        $customer->adress = $request->customer_adress;
+        $customer->tel = $request->customer_phone;
+
+        $customer->save();
+        return redirect()->route('customer.index');
     }
 
     /**

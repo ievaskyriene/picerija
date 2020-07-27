@@ -1,7 +1,4 @@
-{{-- @extends('front.app') --}}
 
-{{-- <span class="count">{{$count}}</span>
-<span class="total">{{$total}}</span> --}}
 
 
 <span class="count">{{$count}}</span>
@@ -9,6 +6,7 @@
 <span class="cur">EUR</span>
 <div class="mini-cart-list">
 <ul>
+  
 @foreach ($cartProducts as $cartProduct)
 <li>{{$cartProduct->title}} X {{$cart[$cartProduct->id]['count']}} {{$cart[$cartProduct->id]['price']}} EUR
     <form action="{{route('front.remove')}}" method="POST">

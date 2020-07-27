@@ -40,8 +40,29 @@ Route::resource('category', 'CategoryController');
 Route::group(['prefix' => 'categories'], function(){
     Route::get('', 'CategoryController@index')->name('category.index');
     Route::get('create', 'CategoryController@create')->name('category.create');
-    // Route::post('store', 'CategoryController@store')->name('category.store');
+    Route::post('store', 'CategoryController@store')->name('category.store');
     Route::get('edit/{category}', 'CategoryController@edit')->name('category.edit');
-    Route::get('update/{category}', 'CategoryController@update')->name('category.update');
-    Route::get('delete/{category}', 'CategoryController@destroy')->name('category.destroy');
+    Route::post('update/{category}', 'CategoryController@update')->name('category.update');
+    Route::post('delete/{category}', 'CategoryController@destroy')->name('category.destroy');
  });
+
+  
+Route::group(['prefix' => 'tags'], function(){
+    Route::get('', 'TagController@index')->name('tag.index');
+    Route::get('create', 'TagController@create')->name('tag.create');
+    Route::post('store', 'TagController@store')->name('tag.store');
+    Route::get('edit/{tag}', 'TagController@edit')->name('tag.edit');
+    Route::post('update/{tag}', 'TagController@update')->name('tag.update');
+    Route::post('delete/{tag}', 'TagController@destroy')->name('tag.destroy');
+ });
+
+ Route::group(['prefix' => 'customers'], function(){
+    Route::get('', 'CustomerController@index')->name('customer.index');
+    Route::get('create', 'CustomerController@create')->name('customer.create');
+    Route::post('store', 'CustomerController@store')->name('customer.store');
+    Route::get('edit/{customer}', 'CustomerController@edit')->name('customer.edit');
+    Route::post('update/{customer}', 'CustomerController@update')->name('customer.update');
+    Route::post('delete/{customer}', 'CustomerController@destroy')->name('customer.destroy');
+    Route::get('show/{customer}', 'CustomerController@show')->name('customer.show');
+ });
+ 

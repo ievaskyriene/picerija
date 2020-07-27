@@ -13,7 +13,16 @@
                         Kaina su nuolaida: <input type="number" name="product_sale"><hr><br>
                         Aprasymas: <input type="text" name="product_description"><hr><br>
 
-                        Produkto kategorija: <input type="text" name="product_description"><hr><br>
+                        <div class="form-group">
+                            <select class="form-control" name="parent_id">
+                              <option value="">Select Parent Category</option>
+                              <option value="0">Pagrindinė kategorija</option>
+                              @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                              @endforeach
+                            </select>
+                          </div>
+                        
                         <div id="product-photo-inputs-area">
                         <input type="file" name="photo[]" id="">
                         {{-- Alt photo name<input type="text" name="alt[]" id=""> --}}

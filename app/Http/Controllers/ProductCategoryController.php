@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\ProductCategory;
+use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ProductCategoryController extends Controller
@@ -35,7 +37,12 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $products = Product::all()
+        // $productcategory = new ProductCategory;
+        // $productCategory->product_id = Product::where('id', $id)->first();
+        // $productCategory->category_id = Category::where('id', $id)->first();
+
+
     }
 
     /**

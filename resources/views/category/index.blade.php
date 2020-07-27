@@ -43,7 +43,7 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('product.create') }}" class="btn btn-success my-2 my-sm-0">Create Post</a>
+                        <a href="{{ route('product.create') }}" class="btn btn-success my-2 my-sm-0">Create Product</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -142,19 +142,26 @@
                         <div class="d-flex justify-content-between">
                           {{ $category->title }}
 
+
+                          {{$category->children}}
+
                           <div class="button-group d-flex">
+
                             <form method="POST">
-                              <a href="{{ route('category.edit', $category->id) }}">
-                            <button type="button" class="btn btn-sm btn-primary mr-1 edit-category">Edit</button>
+                              <a href="{{route('category.edit', $category->id) }}">
+                             <button type="button" class="btn btn-sm btn-primary mr-1">Edit</button>
                               </a>
-                          </form>
-
-                            <form action="{{ route('category.destroy', $category->id) }}" method="POST">
                               @csrf
-                              @method('DELETE')
-
-                              <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                             </form>
+
+                            <form action = "{{route('category.destroy', $category->id) }}" method="POST">
+                              {{-- <a href = "{{route('category.destroy', $category->id) }}"> --}}
+                              {{-- @method('DELETE') --}}
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                              {{-- </a> --}}
+                              @csrf
+                            </form>
+
                           </div>
                         </div>
 
@@ -200,7 +207,7 @@
                     <div class="form-group">
                       <select class="form-control" name="parent_id">
                         <option value="">Select Parent Category</option>
-
+                        <option value="0">Pagrindinė kategorija</option>
                         @foreach ($categories as $category)
                           <option value="{{ $category->id }}">{{ $category->title }}</option>
                         @endforeach
@@ -221,12 +228,12 @@
           </div>
         </div>
 
-        <script
+        {{-- <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> --}}
 
-        <script type="text/javascript">
+        {{-- <script type="text/javascript">
           $('.edit-category').on('click', function() {
             var id = $(this).data('id');
             var title = $(this).data('title');
@@ -235,6 +242,6 @@
             $('#editCategoryModal form').attr('action', url);
             $('#editCategoryModal form input[name="name"]').val(name);
           });
-        </script>
+        </script> --}}
     </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use Session;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
