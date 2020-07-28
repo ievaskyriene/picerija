@@ -36,6 +36,11 @@ Route::post('remove', 'FrontController@remove')->name('front.remove');
 
 Route::resource('category', 'CategoryController');
 
+Route::post('add-js', 'FrontController@addJs')->name('front.add-js');
+
+
+Route::post('add-js', 'FrontController@addJs')->name('front.add-js');
+
  
 Route::group(['prefix' => 'categories'], function(){
     Route::get('', 'CategoryController@index')->name('category.index');

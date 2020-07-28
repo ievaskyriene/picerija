@@ -67,6 +67,7 @@ class ProductController extends Controller
         }
         
         $categories = Category::where('id', $request->parent_id)->get();
+       
         foreach ($categories as $category){
             $productCategory = new ProductCategory;
             $productCategory->product_id = $product->id;
@@ -74,15 +75,28 @@ class ProductController extends Controller
             $productCategory->save();
         }
 
-        // $tag = Tag::where('id', $id)->first();
-        $tags = Tag::all();
+        $tags = Tag::where('title', $request->tags)->get();
+
+
+        // foreach ($request->tags as $tag) {
+        //     dd($tag->id);
+        //     $productTag = new ProductTag;
+           
+        //     $productTag->product_id = $product->id;
+        //     $productTag->tag_id = $tag->id;
+        //     $productTag->save();
+        // }
       
+
         foreach ($tags as $tag){
+        
             $productTag = new ProductTag;
             $productTag->product_id = $product->id;
             $productTag->tag_id = $tag->id;
             $productTag->save();
         }
+
+
 
 
         return redirect()->route('product.index')->withTags($tags);

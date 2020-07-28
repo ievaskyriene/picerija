@@ -142,9 +142,6 @@
                         <div class="d-flex justify-content-between">
                           {{ $category->title }}
 
-
-                          {{$category->children}}
-
                           <div class="button-group d-flex">
 
                             <form method="POST">
@@ -165,19 +162,18 @@
                           </div>
                         </div>
 
-                        {{-- @if ($category->children)
+                        @if ($category->children)
                           <ul class="list-group mt-2">
                             @foreach ($category->children as $child)
                               <li class="list-group-item">
                                 <div class="d-flex justify-content-between">
-                                  {{ $child->name }}
+                                  {{ $child->title }}
 
                                   <div class="button-group d-flex">
-                                    <button type="button" class="btn btn-sm btn-primary mr-1 edit-category" data-toggle="modal" data-target="#editCategoryModal" data-id="{{ $child->id }}" data-name="{{ $child->name }}">Edit</button>
+                                    <button type="button" class="btn btn-sm btn-primary mr-1 edit-category" data-id="{{ $child->id }}" data-name="{{ $child->title }}">Edit</button>
 
                                     <form action="{{ route('category.destroy', $child->id) }}" method="POST">
                                       @csrf
-                                      @method('DELETE')
 
                                       <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                     </form>
@@ -186,7 +182,7 @@
                               </li>
                             @endforeach
                           </ul>
-                        @endif --}}
+                        @endif
                       </li>
                     @endforeach
                   </ul>

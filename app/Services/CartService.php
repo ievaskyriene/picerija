@@ -12,9 +12,12 @@ class CartService
         return 'Hello from hell';
     }
 
+    
+
     public function get()
     {
         $cart = Session::get('cart', []);
+       
         $count = 0;
         $total = 0;
         $cartProducts = [];
@@ -25,15 +28,17 @@ class CartService
                 $count += $value['count'];
                 $total += $value['price'];
                 $cartProducts[$key] = Product::where('id', $value['id'])->first();
+               
             }
-
-           
         }
+      
         return compact('count', 'total', 'cartProducts', 'cart');
     }
 
+
     public function add()
     {
+    //    dd($request);
         $count = (int) $this->request->count;
         $product = Product::where('id', $this->request->product_id)->first();
         $cart = Session::get('cart', []);

@@ -22,11 +22,13 @@
                             <a href="{{route('category.edit',[$category->categoryRelation->id])}}">{{$category->categoryRelation->title}}</a><br>
                         {{-- <p>{{$product->category->title}}</p><br> --}}
                         @endforeach
-                      
-                        @foreach ($product->getTag as $tag)
+                 
                        
+                    @foreach ($product->getTag as $tag)
+                     
+                     
                             <a href="{{route('tag.edit',[$tag->tagRelation->id])}}">{{$tag->tagRelation->title}}</a><br>
-                        {{-- <p>{{$product->category->title}}</p><br> --}}
+                       
                         @endforeach
                     
                 

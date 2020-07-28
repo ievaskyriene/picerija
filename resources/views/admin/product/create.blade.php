@@ -23,7 +23,7 @@
                             </select>
                           </div>
 
-                          <div class="form-group">
+                          {{-- <div class="form-group">
                             <select class="form-control" name="tag">
                               <option value="">Select tag</option>
                               <option value="0">Nera</option>
@@ -31,6 +31,13 @@
                                 <option value="{{ $tag->id }}">{{ $tag->title }}</option>
                               @endforeach
                             </select>
+                          </div> --}}
+
+                          <div class="form-group">
+                              @foreach ($tags as $tag)
+                                <label>{{$tag->title}}</label>
+                                <input type="checkbox" name="tags" value="{{$tag->title}}">
+                              @endforeach
                           </div>
                         
                         <div id="product-photo-inputs-area">
