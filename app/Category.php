@@ -1,6 +1,9 @@
 <?php
 
 namespace App;
+use App\Tag;
+use App\ProductCategory;
+use App\ProductTag;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,8 +21,8 @@ class Category extends Model
         return $this->hasMany('App\Product');
     }
 
-    public function getScoutKey()
+    public function getProducts()
     {
-        return $this->id;
+        return $this->hasMany('App\ProductCategory', 'category_id', 'id');
     }
 }

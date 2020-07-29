@@ -38,6 +38,8 @@ public function tag()
 
 
 
+
+
     // public function getScoutKey()
     // {
     //     return $this->id;

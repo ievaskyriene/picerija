@@ -1,5 +1,3 @@
-require("./bootstrap");
-
 const productPhotoInput =
     '<hr><br><input type="file" name="photo[]"></input> <br> ';
 // Alt photo name<input type="text" name="alt[]" id=""></input>

@@ -40,24 +40,24 @@ echo $sql . '<br>' . $e->getMessage();
 }
 
 
- try {
-    // sql to create table
-    $sql = "CREATE TABLE IF NOT EXISTS customers (
-    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(64),
-    surname VARCHAR(64),
-    email varchar(255) COLLATE utf8mb4_unicode_ci  UNIQUE KEY NOT NULL,
-    address TEXT,
-    tel VARCHAR(64),
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP
-    )";
-    // use exec() because no results are returned
-    $pdo->exec($sql);
-       echo "Table customers created successfully";
-    } catch(PDOException $e) {
-    echo $sql . "<br>" . $e->getMessage();
-    }
+//  try {
+//     // sql to create table
+//     $sql = "CREATE TABLE IF NOT EXISTS customers (
+//     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+//     name VARCHAR(64),
+//     surname VARCHAR(64),
+//     email varchar(255) COLLATE utf8mb4_unicode_ci  UNIQUE KEY NOT NULL,
+//     address TEXT,
+//     tel VARCHAR(64),
+//     created_at TIMESTAMP,
+//     updated_at TIMESTAMP
+//     )";
+//     // use exec() because no results are returned
+//     $pdo->exec($sql);
+//        echo "Table customers created successfully";
+//     } catch(PDOException $e) {
+//     echo $sql . "<br>" . $e->getMessage();
+//     }
 
     try {
         // sql to create table
@@ -113,13 +113,16 @@ echo $sql . '<br>' . $e->getMessage();
         // sql to create table
         $sql = "CREATE TABLE IF NOT EXISTS orders (
         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        customer_id INT(11) UNSIGNED,
         status VARCHAR(64),
-        amount DECIMAL(10, 2),
-        delivery_price DECIMAL(10, 2),
+        name VARCHAR(64),
+        surname VARCHAR(64),
+        email VARCHAR(255) COLLATE utf8mb4_unicode_ci UNIQUE KEY NOT NULL,
+        tel VARCHAR(64),
+        price DECIMAL(5, 2),
+        -- delivery_price DECIMAL(10, 2),
         created_at TIMESTAMP,
-        updated_at TIMESTAMP,
-        FOREIGN KEY (customer_id) REFERENCES customers(id)
+        updated_at TIMESTAMP
+        -- FOREIGN KEY (customer_id) REFERENCES customers(id)
         )";
         // use exec() because no results are returned
         $pdo->exec($sql);
@@ -131,12 +134,12 @@ echo $sql . '<br>' . $e->getMessage();
     try {
         // sql to create table
         $sql = "CREATE TABLE IF NOT EXISTS carts (
-        -- id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        customer_id INT(11) UNSIGNED,
+        id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        order_id INT(11) UNSIGNED,
         product_id INT(11) UNSIGNED,
         created_at TIMESTAMP,
         updated_at TIMESTAMP,
-        FOREIGN KEY (customer_id) REFERENCES customers(id),
+        FOREIGN KEY (order_id) REFERENCES orders(id),
         FOREIGN KEY (product_id) REFERENCES products(id)
         )";
         // use exec() because no results are returned

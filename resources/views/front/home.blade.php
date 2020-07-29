@@ -35,6 +35,10 @@
 
 <div class = "grid_container header_menu" id="main_header">
     <nav>
+      {{-- @foreach ($categories as $category)
+        {{-- <a href=${dataHMenu[i].ref} class = {{$category->title}}}>
+          ${dataHMenu[i].text}</a> --}}
+      {{-- @endforeach --}}
     </nav>
 
     
@@ -69,60 +73,46 @@
     </nav>
 </div>
 
-<div class=" picos" id="picos"> 
-    <div class = "grid_container">
-      <h2>Picos</h2>
-    </div>
 
-    <div class = "grid_container pica_row">
-        @foreach ($products as $product)
-        
-        {{-- <div class="row justify-content-center"> --}}
-           {{-- <div class="col-md-8"> --}}
-               <div class="produktas">
-                @foreach ($product->getImages as $photo)
-                <img class = 'productImg' src="{{asset('images/'.$photo->image_name)}}" style="width: 250px; height: auto;">
+    @foreach ($categories as $category)
+    <div class="{{$category->title}}" id="{{$category->title}}"> 
+        <div class = "grid_container">
+            <h1>{{$category->title}}</h1>
+        </div>
+      <div class = "grid_container pica_row">
+          @foreach(App\ProductCategory::where('category_id', $category->id)->get() as $productCat)
+            <div class="produktas">
+                @foreach ($productCat->productRelation->getImages as $photo)
+                  <img class = 'productImg' src="{{asset('images/'.$photo->image_name)}}" style="width: 250px; height: auto;">
                 @endforeach
-                    <h3>{{$product->title}} </h3>
-                    <h4>{{$product->descrip}} </h4>
-                    <div class = "price_row">
-                    <h4>{{$product->price}}</h4>
-        
-                        <div class="form">
-                            <input type="hidden" name="route" value="{{route('front.add-js')}}">
-                            <input type="hidden" name="product_id" value="{{$product->id}}">
-                            <input type="text" name="count" value="0"><br><br>
-                            <button class="add-button" type="button">ADD TO CART</button>
-                        </div> 
-                 
-    
-                        {{-- <form method="POST" action="{{route('front.add')}}" class="add-form">
-    
-                            <div class = "form">
-                                <input type="hidden" name="route" value="{{route('front.add')}}">
-                                <input type = "hidden" name = "product_id" value = "{{$product->id}}"><br><br>
-                                <input type = 'text' name="count" value='0'>
-                                <button type="add-button">Add to cart</button>
-                            </div>
-    
-                        </div>
-                            @csrf
-                        </form>  --}}
-                    </div>
+                <h3>{{$productCat->productRelation->title}} </h3>
+                <h4>{{$productCat->productRelation->descrip}} </h4>
+                <div class = "price_row">
+                  <h4>{{$productCat->productRelation->price}}</h4>
+                    <div class="form">
+                        <input type="hidden" name="route" value="{{route('front.add-js')}}">
+                        <input type="hidden" name="product_id" value="{{$productCat->productRelation->id}}">
+                        <input type="text" name="count" value="0"><br><br>
+                        <button class="add-button" type="button">ADD TO CART</button>
+                    </div> 
                 </div>
-            {{-- </div>
-        </div> --}}
-        @endforeach 
-      <!-- <div class="produktas">
-        <img src='./img/pirma_pica.jpg'>
-        <h3>Carbonara</h3>
-        <h3>Tekstas</h3>
-        <div class = "price_row">
-          <h3>Nuo 8,75</h3>
-          <button class="pasirinkti">Krepselis</button>
-        </div> -->
-    </div>          
-  </div>
+            </div> 
+          @endforeach 
+      </div> 
+    </div>
+    @endforeach      
+
+    
+    <form action="{{route('buy')}}" method="POST">
+      Name: <input type="text" name="name" value =""><br><br>
+      Surname: <input type="text" name="surname" value =""><br><br>
+      Email: <input type="email" name="email" value =""><br><br>
+      Phone: <input type="text" name="phone" value =""><br><br>
+      <button class="add-button" type="submit">BUY PIZZA</button>
+      @csrf
+    </form>
+
+
 
 <div class="uzkandziai" id="uzkandziai"> 
   <div class = "grid_container">
@@ -158,4 +148,5 @@
   
   
 @endsection
+
 

@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Category;
+use App\Cart;
+use App\Order;
+use App\Libs\WebToPay;
+use Exception;
+
 use App\Services\CartService;
 use Illuminate\Http\Request;
 
@@ -11,8 +17,6 @@ class FrontController extends Controller
     public function home(CartService $cart)
     {
         // print_r(Session::get('cart'));
-       
-
         // $cart = Session::get('cart');
         // $count = 0;
         // $total = 0;
@@ -28,14 +32,14 @@ class FrontController extends Controller
         // }
 
         $products = Product::all();
-        return view('front.home', array_merge(compact('products'), $cart->get()));
+        $categories = Category::all();
+        return view('front.home', array_merge(compact('products'), $cart->get()))->withCategories($categories);
         // return view('front.home', ['products'=>$products]);
         // return view('front.home');
     }
 
     public function add(CartService $cart)
     {
-     
         $cart->add();
         return redirect()->back();
     }
@@ -45,7 +49,6 @@ class FrontController extends Controller
     {
         $cart->add();
         $miniCartHtml = view('front.mini-cart', $cart->get())->render();
-        
         return response()->json([
             'html' => $miniCartHtml,
             'cart' => 'OK',
@@ -57,6 +60,41 @@ class FrontController extends Controller
     {
         $cart->remove();
         return redirect()->back();
+    }
 
+    public function buy(CartService $cart, Request $request)
+    {  
+        $buyCart = $cart->get();
+        $order = new Order;
+        $order->name = $request->name;
+        $order->surname = $request->surname;
+        $order->email = $request->email;
+        $order->tel = $request->phone;
+        $order->price = $buyCart['total'];
+        $order->status = 1;
+        $order->save();
+
+        foreach($buyCart['cartProducts'] as $product){
+            $orderCart = new Cart;
+            $orderCart->product_id = $product->id;
+            $orderCart->order_id = $order->id;
+        }
+        try {
+          
+            return redirect(WebToPay::redirectToPayment(array(
+                'projectid'     => 181595,
+                'sign_password' => '779955dc72a6648396359fe03ce1f967',
+                'orderid'       => 'Pizza-'.$order->id.'-'.rand(100000,999999),
+                'amount'        => (int) $order->price*100,
+                'currency'      => 'EUR',
+                'country'       => 'LT',
+                'accepturl'     => route('paysera.accept'),
+                'cancelurl'     => route('paysera.cancel'),
+                'callbackurl'   => route('paysera.callback'),
+                'test'          => 1,
+            )));
+        } catch (WebToPayException $e) {
+            // handle exception
+        } 
     }
 }

@@ -10,10 +10,10 @@
 
 @foreach ($cartProducts as $cartProduct)
 
-{{-- <li>{{$cartProduct->title}} X {{$cart[$cartProduct->id]['count']}} {{$cart[$cartProduct->id]['price']}} EUR --}}
+<li>{{$cartProduct->title}} X {{$cart[$cartProduct->id]['count']}} {{$cart[$cartProduct->id]['price']}} EUR --}}
   
     <form action="{{route('front.remove')}}" method="POST">
-    {{-- <input type="hidden" name="product_id" value="{{$cartProduct->id}}"> --}}
+    <input type="hidden" name="product_id" value="{{$cartProduct->id}}">
     @csrf
     <button type="submit">Delete</button>
     </form>

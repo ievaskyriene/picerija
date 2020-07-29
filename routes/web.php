@@ -36,11 +36,14 @@ Route::post('remove', 'FrontController@remove')->name('front.remove');
 
 Route::resource('category', 'CategoryController');
 
-Route::post('add-js', 'FrontController@addJs')->name('front.add-js');
-
 
 Route::post('add-js', 'FrontController@addJs')->name('front.add-js');
+Route::post('buy', 'FrontController@buy')->name('buy');
 
+Route::get('paysera/accept', 'FrontController@payseraAccept')->name('paysera.accept');
+Route::get('paysera/cancel', 'FrontController@payseraCancel')->name('paysera.cancel');
+
+Route::post('paysera/callback', 'FrontController@payseraCallback')->name('paysera.callback');
  
 Route::group(['prefix' => 'categories'], function(){
     Route::get('', 'CategoryController@index')->name('category.index');
