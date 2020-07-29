@@ -6,8 +6,14 @@
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
-
+// @import "font-awesome";
+@import "reset";
+@import "layout";
 @import "main";
+@import "button";
+
+@import "header";
+@import "footer";
 // @import "~swiper/scss/swiper";
 
 #cart-count {

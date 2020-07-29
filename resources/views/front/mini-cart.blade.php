@@ -15,7 +15,7 @@
     <form action="{{route('front.remove')}}" method="POST">
     {{-- <input type="hidden" name="product_id" value="{{$cartProduct->id}}"> --}}
     @csrf
-    <button type="submit">-</button>
+    <button type="submit">Delete</button>
     </form>
 </li>
 @endforeach

@@ -53,7 +53,6 @@ class FrontController extends Controller
     }
 
 
-
     public function remove(CartService $cart)
     {
         $cart->remove();

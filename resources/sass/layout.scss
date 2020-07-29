@@ -1,0 +1,43 @@
+/** @format */
+.grid_container {
+  display: grid;
+  grid-template-columns: 280px 340px 320px 320px;
+  grid-gap: 20px;
+  padding: 20px;
+  width: 1280px;
+  margin-left: calc((100% - 1280px) / 2);
+}
+
+.header_menu {
+  display: grid;
+  grid-template-columns: 700px 580px;
+  grid-gap: 20px;
+  padding: 20px;
+  width: 1280px;
+  margin-left: calc((100% - 1280px) / 2);
+}
+
+.header2 {
+  display: grid;
+  grid-template-columns: 700px 580px;
+  grid-gap: 20px;
+  padding: 20px;
+  width: 1280px;
+  margin-left: calc((100% - 1280px) / 2);
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 800px 480px;
+  grid-gap: 20px;
+  padding: 20px;
+  width: 1280px;
+  margin-left: calc((100% - 1280px) / 2);
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}

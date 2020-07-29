@@ -10928,8 +10928,225 @@ a.text-dark:focus {
   }
 }
 
-label {
+/** @format */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+body * {
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  box-sizing: border-box;
+  font-family: Dodo, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  word-break: break-all;
+}
+
+/** @format */
+
+.grid_container {
+  display: grid;
+  grid-template-columns: 280px 340px 320px 320px;
+  grid-gap: 20px;
+  padding: 20px;
+  width: 1280px;
+  margin-left: calc((100% - 1280px) / 2);
+}
+
+.header_menu {
+  display: grid;
+  grid-template-columns: 700px 580px;
+  grid-gap: 20px;
+  padding: 20px;
+  width: 1280px;
+  margin-left: calc((100% - 1280px) / 2);
+}
+
+.header2 {
+  display: grid;
+  grid-template-columns: 700px 580px;
+  grid-gap: 20px;
+  padding: 20px;
+  width: 1280px;
+  margin-left: calc((100% - 1280px) / 2);
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 800px 480px;
+  grid-gap: 20px;
+  padding: 20px;
+  width: 1280px;
+  margin-left: calc((100% - 1280px) / 2);
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+h4 {
+  font-size: 14px;
+  font-weight: lighter;
+  color: #999999;
+  word-break: keep-all;
+}
+
+.produktas img {
+  width: 233px;
+  height: 233px;
+}
+
+.produktas h3 {
+  padding: 10px 0;
+}
+
+.produktas h4 {
+  height: 68px;
+}
+
+.price_row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.footer_container {
+  color: white;
+  display: inline-block;
+  height: 309px;
+  background-color: #454b54;
+  width: 100%;
+}
+
+.footer_container .footer {
+  color: white;
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+.footer_container .footer a {
+  color: #ddd5d5;
+  text-decoration: none;
+}
+
+.footer_container .footer p {
+  padding: 10px 0;
+}
+
+.footer_container .footer .footer_text {
+  display: flex;
+}
+
+.footer_container .footer .footer_text div {
+  padding: 0 10px;
+}
+
+.footer_container .footer .apple {
+  text-align: right;
+}
+
+.footer_container .footer .apple img {
   width: 150px;
+  height: 100px;
+  background-color: transparent;
+}
+
+/** @format */
+
+.prisijungti {
+  width: 90px;
+  height: 35px;
+  padding: 0 10px;
+  border-radius: 20px;
+  border: 1px solid #999999;
+}
+
+button {
+  width: 120px;
+  height: 42px;
+  padding: 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #ff6900;
+  color: #ff6900;
+}
+
+/** @format */
+
+img {
+  width: 50px;
+  height: 50px;
+}
+
+.logo_column {
+  display: flex;
+}
+
+.button {
+  text-align: right;
+}
+
+h3 a {
+  color: #ff6900;
+  text-decoration: none;
+}
+
+#main_header a {
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  padding: 0 22px 0 0;
+}
+
+#main_header a:hover {
+  color: #ff6900;
+}
+
+.header_menu.fixedHeader {
+  position: fixed;
+  height: 60px;
+  width: 100%;
+  z-index: 1;
+  background-color: white;
+  margin-top: -90px;
+}
+
+.procesas {
+  display: flex;
+}
+
+.procesas .part {
+  margin-right: 100px;
+  text-align: center;
+}
+
+.procesas .part .text {
+  font-size: 14px;
+  text-align: center;
+}
+
+.procesas .number {
+  text-align: center;
+  font-size: 15px;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 50%;
 }
 
 #cart-count {

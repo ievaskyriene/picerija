@@ -20,7 +20,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('admin.product.index', ['products' => $products]);
+        $categories = Category::all();
+        return view('admin.product.index', ['products' => $products], ['categories' => $categories]);
+
     }
 
     /**
@@ -95,9 +97,6 @@ class ProductController extends Controller
             $productTag->tag_id = $tag->id;
             $productTag->save();
         }
-
-
-
 
         return redirect()->route('product.index')->withTags($tags);
     }
@@ -179,10 +178,7 @@ class ProductController extends Controller
             $productTag->delete();
         }
 
-
-
         $product->delete();
-       
       
         return redirect()->route('product.index');
     }
