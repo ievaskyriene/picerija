@@ -6,10 +6,10 @@ use App\Product;
 use App\Category;
 use App\Cart;
 use App\Order;
-use App\Libs\WebToPay;
-use Exception;
 
+use Exception;
 use App\Services\CartService;
+use App\Services\PayseraService;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -59,7 +59,7 @@ class FrontController extends Controller
         return redirect()->back();
     }
 
-    public function buy(CartService $cart, Request $request)
+    public function buy(CartService $cart, Request $request, PayseraService $paysera)
     {  
         $buyCart = $cart->get();
         $order = new Order;
@@ -70,12 +70,17 @@ class FrontController extends Controller
         $order->price = $buyCart['total'];
         $order->status = 1;
         $order->save();
+        $cart->empty();
 
         foreach($buyCart['cartProducts'] as $product){
             $orderCart = new Cart;
             $orderCart->product_id = $product->id;
             $orderCart->order_id = $order->id;
+            $orderCart->save();
         }
+
+        return $paysera->buy($order);
+
         try {
           
             return redirect(WebToPay::redirectToPayment(array(
@@ -97,37 +102,7 @@ class FrontController extends Controller
 
     public function payseraAccept()
     {
-        try {
-                $response = WebToPay::checkResponse($_GET, array(
-                    'projectid'     => 0,
-                    'sign_password' => '779955dc72a6648396359fe03ce1f967',
-                ));
-                // if ($response['test'] !== '0') {
-                //     throw new Exception('Testing, real payment was not made');
-                // }
-                // if ($response['type'] !== 'macro') {
-                //     throw new Exception('Only macro payment callbacks are accepted');
-                // }
-        
-                $orderId = $response['orderid'];
-                $amount = $response['amount'];
-                $currency = $response['currency'];
-
-                $order = Order::where('id', $orderId)->first();
-
-                if($amount == (int)($order->price * 100 ) && 
-                $currency == 'EUR' &&
-                $order->status == 1
-                ){
-                    $order->status = 2;
-                    $order->save();
-                }
-               
-        
-                echo 'OK';
-        } catch (Exception $e) {
-                echo get_class($e) . ': ' . $e->getMessage();
-        }
+        $paysera->allGood;
         return redirect()->route('all.good');
     
     }

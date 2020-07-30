@@ -67,18 +67,17 @@ class ProductController extends Controller
             $photo->save(); 
         }
         
-        $categories = Category::where('id', $request->parent_id)->get();
+        $categories = $request->categories;
        
         foreach ($categories as $category){
             $productCategory = new ProductCategory;
             $productCategory->product_id = $product->id;
-            $productCategory->category_id = $category->id;
+            $productCategory->category_id = $category;
             $productCategory->save();
         }
 
-        $tags = Tag::where('title', $request->tags)->get();
-
-
+        $tags = $request->tags;
+    
         // foreach ($request->tags as $tag) {
         //     dd($tag->id);
         //     $productTag = new ProductTag;
@@ -87,13 +86,12 @@ class ProductController extends Controller
         //     $productTag->tag_id = $tag->id;
         //     $productTag->save();
         // }
-      
 
         foreach ($tags as $tag){
         
             $productTag = new ProductTag;
             $productTag->product_id = $product->id;
-            $productTag->tag_id = $tag->id;
+            $productTag->tag_id = $tag;
             $productTag->save();
         }
 
@@ -118,8 +116,11 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
+
     {
-        return view('admin.product.edit', ['product' => $product]);
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('admin.product.edit', compact('product', 'categories', 'tags'));
     }
 
     /**

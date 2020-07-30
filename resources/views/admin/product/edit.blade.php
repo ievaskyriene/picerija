@@ -18,6 +18,30 @@
                         <div id="product-photo-inputs-area">
                         <input type="file" name="photo[]" id="">
                         Alt photo name<input type="text" name="alt[]" id="">
+                        <div class="form-group">
+                            @foreach ($tags as $tag)
+                              <label>{{$tag->title}}</label>
+                              <input type="checkbox" name="tags[]" value="{{$tag->id}}">
+                            @endforeach
+                        </div>
+                        <div class="form-group">
+                            @foreach ($categories as $category)
+                            <label>{{$category->title}}</label>
+                                @php   
+                                $turi=false;
+                                @endphp
+                                @foreach ($product->getCategory as $productCat)
+                                    @if($productCat->categoryRelation->id == $category->id)
+                                        @php
+                                            $turi = true;
+                                        @endphp
+                                    @endif 
+                                @endforeach
+                                    <input type="checkbox" name="categories[]" value="{{$category->id}}"
+                                    {{$turi?'checked':''}}>
+                            @endforeach
+
+                        </div>
                         </div>
                         @csrf
                         <button id="add-product-photo" type="button" class="btn btn-secondary">add photo</button>

@@ -12,7 +12,7 @@ class CartService
         return 'Hello from hell';
     }
 
-    
+
 
     public function get()
     {
@@ -73,5 +73,11 @@ class CartService
         Session::put('cart', $cart);
         return redirect()->back();
 
+    }
+
+
+    public function empty()
+    {
+        Session::forget('cart');
     }
 }

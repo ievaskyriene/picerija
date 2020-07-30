@@ -14,14 +14,11 @@
                         Aprasymas: <input type="text" name="product_description"><hr><br>
 
                         <div class="form-group">
-                            <select class="form-control" name="parent_id">
-                              <option value="">Select Parent Category</option>
-                              <option value="0">Pagrindinė kategorija</option>
-                              @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->title }}</option>
-                              @endforeach
-                            </select>
-                          </div>
+                          @foreach ($categories as $category)
+                            <label>{{$category->title}}</label>
+                            <input type="checkbox" name="categories[]" value="{{$category->id}}">
+                          @endforeach
+                      </div>
 
                           {{-- <div class="form-group">
                             <select class="form-control" name="tag">
@@ -36,7 +33,7 @@
                           <div class="form-group">
                               @foreach ($tags as $tag)
                                 <label>{{$tag->title}}</label>
-                                <input type="checkbox" name="tags" value="{{$tag->title}}">
+                                <input type="checkbox" name="tags[]" value="{{$tag->id}}">
                               @endforeach
                           </div>
                         
