@@ -1,11 +1,10 @@
-// Fonts
 @import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
 @import "variables";
 
 // Bootstrap
-// @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
 // @import "font-awesome";
 @import "reset";
 @import "layout";
@@ -15,22 +14,12 @@
 @import "footer";
 // @import "~swiper/scss/swiper";
 
-.mini-cart-js {
-    img {
-        width: 30px;
-    }
-
-    .img {
-        width: 30px;
-    }
-}
-
 #cart-count {
     position: relative;
     .mini-cart-list {
         display: none;
         position: absolute;
-        width: 300px;
+        width: 200px;
         background: #fff;
         top: 20px;
     }

@@ -62,10 +62,9 @@ class ProductController extends Controller
             $photo = new Image;
             $photo->image_name = $name;
             $photo->nr = $key;
-            // $photo->alt = $request->alt;
+            $photo->alt = $request->alt;
             $photo->product_id = $product->id;
-            $photo->save();
-           
+            $photo->save(); 
         }
         
         $categories = Category::where('id', $request->parent_id)->get();

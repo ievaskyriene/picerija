@@ -42,7 +42,7 @@
                         
                         <div id="product-photo-inputs-area">
                         <input type="file" name="photo[]" id="">
-                        {{-- Alt photo name<input type="text" name="alt[]" id=""> --}}
+                        Alt photo name<input type="text" name="alt" id="">
                         </div>
                         @csrf
                         <button id="add-product-photo" type="button" class="btn btn-secondary">add photo</button>

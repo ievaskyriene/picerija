@@ -24,11 +24,8 @@
                         @endforeach
                  
                        
-                    @foreach ($product->getTag as $tag)
-                     
-                     
+                        @foreach ($product->getTag as $tag)                     
                             <a href="{{route('tag.edit',[$tag->tagRelation->id])}}">{{$tag->tagRelation->title}}</a><br>
-                       
                         @endforeach
                     
                 

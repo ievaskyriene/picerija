@@ -2102,6 +2102,21 @@ process.umask = function() { return 0; };
 /***/ (function(module, exports, __webpack_require__) {
 
 console.log("js veikia");
+var productPhotoInput = '<hr><br><input type="file" name="photo[]"></input> <br> '; // Alt photo name<input type="text" name="alt[]" id=""></input>
+
+var addPhotoButton = document.querySelector("#add-product-photo");
+console.log(addPhotoButton);
+var productPhotoInputsArea = document.querySelector("#product-photo-inputs-area");
+
+if (addPhotoButton) {
+  addPhotoButton.addEventListener("click", function () {
+    console.log("lalla");
+    var input = document.createElement("span");
+    input.innerHTML = productPhotoInput;
+    productPhotoInputsArea.appendChild(input);
+  });
+}
+
 document.querySelectorAll(".add-button").forEach(function (button) {
   button.addEventListener("click", function () {
     console.log("click");
@@ -2127,6 +2142,17 @@ document.querySelectorAll(".add-button").forEach(function (button) {
 
 /***/ }),
 
+/***/ "./resources/sass/app-admin.scss":
+/*!***************************************!*\
+  !*** ./resources/sass/app-admin.scss ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -2139,14 +2165,15 @@ document.querySelectorAll(".add-button").forEach(function (button) {
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!*********************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/app-admin.scss ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/ievaskyriene/.bitnami/stackman/machines/xampp/volumes/root/htdocs/picerija/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/ievaskyriene/.bitnami/stackman/machines/xampp/volumes/root/htdocs/picerija/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/ievaskyriene/.bitnami/stackman/machines/xampp/volumes/root/htdocs/picerija/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/ievaskyriene/.bitnami/stackman/machines/xampp/volumes/root/htdocs/picerija/resources/sass/app-admin.scss */"./resources/sass/app-admin.scss");
 
 
 /***/ })

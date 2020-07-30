@@ -1,14 +1,11 @@
 
 @extends('front.app')
-
 @section('content')
-
 <div class="grid_container header" > 
     <div class="logo_column">
-        <a href="#"><img class="logo" src="./img/logo.svg" alt="Logo" /></a>
+        <a href="#"><img class="logo" src="./images/logo.svg" alt="Logo" /></a>
         <h1>DODO PIZZA</h1>
     </div>
-   
     <div class="pristatymas">
         <h3>
         Nemokamas picų pristatymas <a class="Vilnius" href="#">Vilnius</a>
@@ -35,10 +32,12 @@
 
 <div class = "grid_container header_menu" id="main_header">
     <nav>
-      {{-- @foreach ($categories as $category)
-        {{-- <a href=${dataHMenu[i].ref} class = {{$category->title}}}>
-          ${dataHMenu[i].text}</a> --}}
-      {{-- @endforeach --}}
+      <a href='#' class = 'active'>
+        Home</a>
+      @foreach ($categories as $category)
+          <a href='#{{$category->title}}' class = 'ref'>
+          {{$category->title}}</a>
+      @endforeach
     </nav>
 
     
@@ -61,17 +60,27 @@
                        
                         <li class="nav-item">
                             <a class="nav-link shop-cart" href="">
-                            {{-- @include('front.cart-svg') --}}
+                             {{-- @include('front.cart-svg') --}}
                                 <div id="cart-count">
                                 @include('front.mini-cart')
                                 </div>
                             </a>
-                        </li>
+                        </li> 
                 </ul>
             </div>
         </div>
     </nav>
 </div>
+
+{{-- <div class='mini-cart-js'>
+  <a class="nav-link shop-cart" href="">
+    {{-- @include('front.cart-svg') --}}
+        {{-- <div id="cart-count">
+        @include('front.mini-cart')
+        </div> --}}
+    {{-- </a>
+
+</div> --}}
 
 
     @foreach ($categories as $category)
@@ -82,6 +91,7 @@
       <div class = "grid_container pica_row">
           @foreach(App\ProductCategory::where('category_id', $category->id)->get() as $productCat)
             <div class="produktas">
+             {{-- {{dd($productCat->productRelation)}} --}}
                 @foreach ($productCat->productRelation->getImages as $photo)
                   <img class = 'productImg' src="{{asset('images/'.$photo->image_name)}}" style="width: 250px; height: auto;">
                 @endforeach

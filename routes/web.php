@@ -44,6 +44,7 @@ Route::get('paysera/accept', 'FrontController@payseraAccept')->name('paysera.acc
 Route::get('paysera/cancel', 'FrontController@payseraCancel')->name('paysera.cancel');
 
 Route::post('paysera/callback', 'FrontController@payseraCallback')->name('paysera.callback');
+Route::get('all/good', 'FrontController@allGood')->name('all.good');
  
 Route::group(['prefix' => 'categories'], function(){
     Route::get('', 'CategoryController@index')->name('category.index');
